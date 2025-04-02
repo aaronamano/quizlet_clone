@@ -8,7 +8,7 @@ function HorizontalNavbar(){
         <>
           <nav className="bg-[#0A092D] flex flex-row">
             <button>
-              <IoMenu className="text-white w-[30px] h-[30px] m-1" />
+              <IoMenu className="text-white w-[30px] h-[30px] m-1 hover:bg-[#2E3856]" />
             </button>
     
             <svg
