@@ -7,7 +7,8 @@ import { FaRegBell } from "react-icons/fa";
 function VerticalNavbar() {
   return (
     <>
-        <nav className="fixed left-0 h-screen w-64 bg-[#0A092D] mx-2">
+      <nav className="absolute left-0 h-screen w-64 bg-[#0A092D]">
+        <div className="mx-2">
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
               <GoHome className="w-7 h-7 text-[#F6F7FB]" />
@@ -46,7 +47,8 @@ function VerticalNavbar() {
               <div className="mx-1 my-[-1]">Add Folder</div>
             </button>
           </div>
-        </nav>
+        </div>
+      </nav>
     </>
   );
 }
