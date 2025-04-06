@@ -1,5 +1,8 @@
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { CiFolderOn } from "react-icons/ci";
+import HorizontalNavbar from "./HorizontalNavbar";
+import VerticalNavbar from "./VerticalNavbar";
+import { Link } from "react-router-dom";
 
 function FolderCard() {
   return (
@@ -20,15 +23,19 @@ function FolderCard() {
 function LibFolders() {
   return (
     <>
+      <HorizontalNavbar />
+      <VerticalNavbar />
       <div className="bg-[#0A092D] min-h-screen ml-64 p-4">
         {/* title */}
         <h1 className="mx-2 text-[#F6F7FB] text-3xl font-bold">Your Library</h1>
 
         {/* links */}
         <div className="flex flex-row my-10">
-          <div className="mx-2 text-[#F6F7FB] hover:underline">
-            <p>Flashcard Sets</p>
-          </div>
+          <Link to="/">
+            <div className="mx-2 text-[#F6F7FB] hover:underline">
+              <p>Flashcard Sets</p>
+            </div>
+          </Link>
 
           <div className="mx-2 text-[#F6F7FB] hover:underline">
             <p>Study Guides</p>
@@ -38,9 +45,11 @@ function LibFolders() {
             <p>Expert Solutions</p>
           </div>
 
-          <div className="mx-2 text-[#F6F7FB] hover:underline">
-            <p>Folders</p>
-          </div>
+          <Link to="/folders">
+            <div className="mx-2 text-[#F6F7FB] hover:underline">
+              <p>Folders</p>
+            </div>
+          </Link>
         </div>
 
         <hr className="text-[#2E3856] relative top-[-30px]"></hr>

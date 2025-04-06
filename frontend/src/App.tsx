@@ -1,16 +1,18 @@
 import "./App.css";
-import HorizontalNavbar from "./components/HorizontalNavbar";
-import LibFolders from "./components/LibFolders";
-import VerticalNavbar from "./components/VerticalNavbar";
 import LibStudySets from "./components/LibStudySets";
+import LibFolders from "./components/LibFolders";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <div className="bg-[#0A092D] min-h">
-        <HorizontalNavbar />
-        <VerticalNavbar />
-        <LibStudySets />
+        <Router>
+          <Routes>
+            <Route path="/" element={<LibStudySets />} />
+            <Route path="/folders" element={<LibFolders />} />
+          </Routes>
+        </Router>
       </div>
     </>
   );
