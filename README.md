@@ -1,1 +1,1 @@
-hello I will attempt to make a MERN stack Quizlet clone
+hello I will attempt to make a PERN stack Quizlet clone
