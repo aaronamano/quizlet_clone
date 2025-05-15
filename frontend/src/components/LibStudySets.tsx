@@ -26,7 +26,7 @@ function LibStudySets() {
       <div className="bg-[#0A092D] min-h-screen ml-64 p-4">
         {/* title */}
         <h1 className="mx-2 text-[#F6F7FB] text-3xl font-bold">
-          Your Study Set Library
+          Your Library
         </h1>
 
         {/* links */}

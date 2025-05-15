@@ -2,19 +2,32 @@ import { FaPlus } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoMenu } from "react-icons/io5";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
-import PopupModal from "./PopupModal";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { TbCards } from "react-icons/tb";
+import { CiFolderOn } from "react-icons/ci";
+import { IoMdPeople } from "react-icons/io";
+import { GrNotes } from "react-icons/gr";
 
 function HorizontalNavbar() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateDropdownOpen, setIsCreateDropdownOpen] = useState(false);
+  const createDropdownRef = useRef<HTMLDivElement>(null);
 
-  function openModal() {
-    setIsModalOpen(true);
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (createDropdownRef.current && !createDropdownRef.current.contains(event.target as Node)) {
+        setIsCreateDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  function toggleCreateDropdown() {
+    setIsCreateDropdownOpen(!isCreateDropdownOpen);
   }
 
-  function closeModal() {
-    setIsModalOpen(false);
-  }
 
   return (
     <>
@@ -53,12 +66,35 @@ function HorizontalNavbar() {
         </div>
 
         <div className="flex m-2 mx-3 space-x-3 ml-auto">
-          <button
-            onClick={openModal}
-            className="bg-[#4255FF] hover:bg-[#423ed8] p-2 rounded-xs"
-          >
-            <FaPlus className=" text-white w-[20px] h-[20px]" />
-          </button>
+          <div className="relative" ref={createDropdownRef}>
+            <button
+              onClick={toggleCreateDropdown}
+              className="bg-[#4255FF] hover:bg-[#423ed8] p-2 rounded-xs"
+            >
+              <FaPlus className=" text-white w-[20px] h-[20px]" />
+            </button>
+
+            {isCreateDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-[#0A092D] rounded-md shadow-lg py-1 z-50 border border-[#F6F7FB]">
+                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
+                  <TbCards className="w-5 h-5"/>
+                  <div className="mx-1">Flashcard Set</div>
+                </a>
+                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
+                  <GrNotes className="w-5 h-5"/>
+                  <div className="mx-1">Study Guide</div>
+                </a>
+                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
+                  <CiFolderOn className="w-5 h-5"/>
+                  <div className="mx-1">Folder</div>
+                </a>
+                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
+                  <IoMdPeople className="w-5 h-5"/>
+                  <div className="mx-1">Class</div>
+                </a>
+              </div>
+            )}
+          </div>
 
           <button className="bg-[#FFCD1F] p-2 rounded-xs">
             Upgrade: free 7-day trial
@@ -69,18 +105,6 @@ function HorizontalNavbar() {
           </button>
         </div>
       </nav>
-
-      <PopupModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title="sample modal"
-        closeOnOutsideClick={true}
-      >
-          <div className="space-y-4">
-            <p>This modal uses function declaration syntax.</p>
-            <p>Click outside or press the close button to dismiss.</p>
-          </div>
-      </PopupModal>
     </>
   );
 }
