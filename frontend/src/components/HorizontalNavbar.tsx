@@ -7,9 +7,14 @@ import { TbCards } from "react-icons/tb";
 import { CiFolderOn } from "react-icons/ci";
 import { IoMdPeople } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
+import FlashcardSetModal from "./FlashcardSetModal";
+import NewFolderModal from "./NewFolderModal";
+
+
 
 function HorizontalNavbar() {
   const [isCreateDropdownOpen, setIsCreateDropdownOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<'flashcard' | 'folder' | null>(null);
   const createDropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -27,6 +32,16 @@ function HorizontalNavbar() {
   function toggleCreateDropdown() {
     setIsCreateDropdownOpen(!isCreateDropdownOpen);
   }
+
+  //handle modal
+  const handleModalOpen = (modalType: 'flashcard' | 'folder') => {
+    setActiveModal(modalType);
+    setIsCreateDropdownOpen(false);
+  };
+
+  const handleModalClose = () => {
+    setActiveModal(null);
+  };
 
 
   return (
@@ -76,20 +91,43 @@ function HorizontalNavbar() {
 
             {isCreateDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-[#0A092D] rounded-md shadow-lg py-1 z-50 border border-[#F6F7FB]">
-                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
-                  <TbCards className="w-5 h-5"/>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleModalOpen('flashcard');
+                  }}
+                  className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]"
+                >
+                  <TbCards className="w-5 h-5" />
                   <div className="mx-1">Flashcard Set</div>
                 </a>
-                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
-                  <GrNotes className="w-5 h-5"/>
+                <a
+                  href="#"
+                  className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]"
+
+                >
+                  <GrNotes className="w-5 h-5" />
                   <div className="mx-1">Study Guide</div>
                 </a>
-                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
-                  <CiFolderOn className="w-5 h-5"/>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleModalOpen('folder');
+                  }}
+                  className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]"
+                >
+                  <CiFolderOn className="w-5 h-5" />
                   <div className="mx-1">Folder</div>
                 </a>
-                <a href="#" className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
-                  <IoMdPeople className="w-5 h-5"/>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                  className="flex flex-row px-4 py-2 text-sm text-[#F6F7FB] hover:bg-[#2E3856]">
+                  <IoMdPeople className="w-5 h-5" />
                   <div className="mx-1">Class</div>
                 </a>
               </div>
@@ -105,6 +143,16 @@ function HorizontalNavbar() {
           </button>
         </div>
       </nav>
+      <FlashcardSetModal
+        isOpen={activeModal === 'flashcard'}
+        onClose={handleModalClose}
+      />
+
+
+      <NewFolderModal
+        isOpen={activeModal === 'folder'}
+        onClose={handleModalClose}
+      />
     </>
   );
 }

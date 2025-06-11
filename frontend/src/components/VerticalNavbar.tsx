@@ -11,21 +11,21 @@ function VerticalNavbar() {
         <div className="mx-2">
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <GoHome className="w-7 h-7 text-[#F6F7FB]" />
+              <GoHome className="w-6 h-6 text-[#F6F7FB]" />
               <div className="mx-1 my-[-1]">Home</div>
             </button>
           </div>
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <FaFolderOpen className="w-7 h-7 text-[#F6F7FB]" />
-              <div className="mx-1 my-[-1]">Your Library</div>
+              <FaFolderOpen className="w-6 h-6 text-[#F6F7FB] mx-1" />
+              <div className="my-[-1]">Your Library</div>
             </button>
           </div>
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <FaRegBell className="w-7 h-7 text-[#F6F7FB]" />
+              <FaRegBell className="w-6 h-6 text-[#F6F7FB]" />
               <div className="mx-1 my-[-1]">Notifications</div>
             </button>
           </div>
@@ -36,14 +36,14 @@ function VerticalNavbar() {
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <CiFolderOn className="w-7 h-7 text-[#F6F7FB]" />
+              <CiFolderOn className="w-6 h-6 text-[#F6F7FB]" />
               <div className="mx-1 my-[-1]">Test Folder</div>
             </button>
           </div>
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <FaPlus className="w-5 h-5 text-[#F6F7FB]" />
+              <FaPlus className="w-5 h-5 text-[#F6F7FB] mx-1 my-0.5" />
               <div className="mx-1 my-[-1]">Add Folder</div>
             </button>
           </div>
