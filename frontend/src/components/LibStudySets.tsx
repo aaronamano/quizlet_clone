@@ -18,7 +18,7 @@ function StudySetCard() {
   );
 }
 
-function LibStudySets() {
+export default function LibStudySets() {
   return (
     <>
       <HorizontalNavbar />
@@ -104,5 +104,3 @@ function LibStudySets() {
     </>
   );
 }
-
-export default LibStudySets;

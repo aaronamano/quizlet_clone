@@ -7,12 +7,12 @@ import { TbCards } from "react-icons/tb";
 import { CiFolderOn } from "react-icons/ci";
 import { IoMdPeople } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
-import FlashcardSetModal from "./FlashcardSetModal";
-import NewFolderModal from "./NewFolderModal";
+import FlashcardSetModal from "./modal/FlashcardSetModal";
+import NewFolderModal from "./modal/NewFolderModal";
 
 
 
-function HorizontalNavbar() {
+export default function HorizontalNavbar() {
   const [isCreateDropdownOpen, setIsCreateDropdownOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<'flashcard' | 'folder' | null>(null);
   const createDropdownRef = useRef<HTMLDivElement>(null);
@@ -156,5 +156,3 @@ function HorizontalNavbar() {
     </>
   );
 }
-
-export default HorizontalNavbar;

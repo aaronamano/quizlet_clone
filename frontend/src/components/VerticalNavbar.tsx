@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaRegBell } from "react-icons/fa";
 
-function VerticalNavbar() {
+export default function VerticalNavbar() {
   return (
     <>
       <nav className="absolute left-0 h-screen w-64 bg-[#0A092D]">
@@ -52,5 +52,3 @@ function VerticalNavbar() {
     </>
   );
 }
-
-export default VerticalNavbar;

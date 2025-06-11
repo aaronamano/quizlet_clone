@@ -20,7 +20,7 @@ function FolderCard() {
   );
 }
 
-function LibFolders() {
+export default function LibFolders() {
   return (
     <>
       <HorizontalNavbar />
@@ -102,5 +102,3 @@ function LibFolders() {
     </>
   );
 }
-
-export default LibFolders;
