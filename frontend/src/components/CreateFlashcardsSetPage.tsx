@@ -97,6 +97,11 @@ export default function CreateFlashcardsSetPage() {
 
         <AddCard />
 
+        <div className="flex m-2 mx-3 space-x-3 mt-4 justify-end">
+          <button className="bg-[#0A092D] w-24 p-2 rounded-md border-[#2E3856] border-2 text-[#2E3856] mx-4">Create</button>
+          <button className="bg-[#2E3856] w-44 p-2 rounded-md border-[#2E3856] border-2 text-[#F6F7FB]">Create and Practice</button>
+        </div>
+
       </div>
     </>
   )
