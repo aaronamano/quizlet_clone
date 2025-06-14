@@ -57,6 +57,7 @@ export default function StudySetPage() {
         <div className="border-2 border-[#2E3856] p-3 rounded-4xl">
           <FaArrowLeft className="text-[#F6F7FB] text-3xl w-14 cursor-pointer" />
         </div>
+        <p className="text-[#F6F7FB] text-2xl font-bold mt-3">1/2</p>
         <div className="border-2 border-[#2E3856] p-3 rounded-4xl">
           <FaArrowRight className="text-[#F6F7FB] text-3xl w-14 cursor-pointer" />
         </div>
