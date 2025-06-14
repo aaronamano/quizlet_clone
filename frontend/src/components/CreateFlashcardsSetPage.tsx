@@ -2,6 +2,7 @@ import HorizontalNavbar from "./HorizontalNavbar";
 import VerticalNavbar from "./VerticalNavbar";
 import { FiTrash } from "react-icons/fi";
 import { FaGripLines } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function CardTemplate() {
   return (
@@ -13,7 +14,7 @@ function CardTemplate() {
           <FiTrash className="w-6 h-6 text-white m-4" />
         </div>
 
-        <hr className="border-t-2" />
+        <hr className="border-t-2 text-[#0A092D]" />
 
         <div className="flex flex-row">
           <div className="mx-5 mt-4">
@@ -49,7 +50,7 @@ function AddCard() {
     <>
       <div className="bg-[#2E3856] w-[1215px] h-32 rounded-md m-1.5">
         <div className="flex items-center justify-center h-full">
-          <p className="text-2xl text-white font-bold text-center underline decoration-[#3ccfcf] underline-offset-8">
+          <p className="text-2xl text-white font-bold text-center underline decoration-[#3ccfcf] underline-offset-8 hover:text-[#FFCD1F] hover:decoration-[#FFCD1F]">
             ADD A CARD
           </p>
         </div>
@@ -69,8 +70,10 @@ export default function CreateFlashcardsSetPage() {
           <h1 className="mx-2 text-[#F6F7FB] text-3xl font-bold">Create a new flashcard set</h1>
 
           <div className="flex m-2 mx-3 space-x-3 ml-auto">
-            <button className="bg-[#0A092D] w-24 p-2 rounded-md border-[#2E3856] border-2 text-[#2E3856] mx-4">Create</button>
-            <button className="bg-[#2E3856] w-44 p-2 rounded-md border-[#2E3856] border-2 text-[#F6F7FB]">Create and Practice</button>
+            <Link to="/study-set-page" state={{ openModal: true }}>
+              <button className="bg-[#0A092D] w-24 p-2 rounded-md border-[#2E3856] border-2 text-[#2E3856] mx-1 hover:bg-[#2E3856] hover:text-[#F6F7FB] transition-colors duration-200">Create</button>
+            </Link>
+            <button className="bg-[#2E3856] w-44 p-2 rounded-md border-[#2E3856] border-2 text-[#F6F7FB] hover:bg-[#3A466B] transition-colors duration-200">Create and Practice</button>
           </div>
 
         </div>
@@ -98,8 +101,10 @@ export default function CreateFlashcardsSetPage() {
         <AddCard />
 
         <div className="flex m-2 mx-3 space-x-3 mt-4 justify-end">
-          <button className="bg-[#0A092D] w-24 p-2 rounded-md border-[#2E3856] border-2 text-[#2E3856] mx-4">Create</button>
-          <button className="bg-[#2E3856] w-44 p-2 rounded-md border-[#2E3856] border-2 text-[#F6F7FB]">Create and Practice</button>
+          <Link to="/study-set-page" state={{ openModal: true }}>
+            <button className="bg-[#0A092D] w-24 p-2 rounded-md border-[#2E3856] border-2 text-[#2E3856] mx-1 hover:bg-[#2E3856] hover:text-[#F6F7FB] transition-colors duration-200">Create</button>
+          </Link>
+          <button className="bg-[#2E3856] w-44 p-2 rounded-md border-[#2E3856] border-2 text-[#F6F7FB] hover:bg-[#3A466B] transition-colors duration-200">Create and Practice</button>
         </div>
 
       </div>

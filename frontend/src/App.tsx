@@ -3,6 +3,7 @@ import LibStudySets from "./components/LibStudySets";
 import LibFolders from "./components/LibFolders";
 import CreateFlashcardsSetPage from "./components/CreateFlashcardsSetPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import StudySetPage from "./components/StudySetPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Route path="/" element={<LibStudySets />} />
             <Route path="/folders" element={<LibFolders />} />
             <Route path="/create-flashcards-set" element={<CreateFlashcardsSetPage />} />
+            <Route path="/study-set-page" element={<StudySetPage />}/>
           </Routes>
         </Router>
       </div>
