@@ -4,8 +4,25 @@ import { FaPlus } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaRegBell } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import NewFolderModal from "./modal/NewFolderModal";
+
+function Folder() {
+  return (
+    <>
+      <div className="my-4 hover:bg-[#2E3856]">
+        <button className="flex flex-row text-[#F6F7FB]">
+          <CiFolderOn className="w-6 h-6 text-[#F6F7FB]" />
+          <div className="mx-1 my-[-1]">Test Folder</div>
+        </button>
+      </div>
+    </>
+  )
+}
 
 export default function VerticalNavbar() {
+  const [isNewFolderModalOpen, setIsNewFolderModalOpen] = useState(false);
+
   return (
     <>
       <nav className="absolute left-0 h-screen w-64 bg-[#0A092D]">
@@ -17,12 +34,11 @@ export default function VerticalNavbar() {
                 <div className="mx-1 my-[-1]">Home</div>
               </button>
             </Link>
-
           </div>
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button className="flex flex-row text-[#F6F7FB]">
-              <FaFolderOpen className="w-6 h-6 text-[#F6F7FB] mx-1" />
+              <FaFolderOpen className="w-5 h-5 text-[#F6F7FB] mx-1" />
               <div className="my-[-1]">Your Library</div>
             </button>
           </div>
@@ -38,21 +54,24 @@ export default function VerticalNavbar() {
 
           <p className="text-[#F6F7FB] my-2">Your Folders</p>
 
-          <div className="my-4 hover:bg-[#2E3856]">
-            <button className="flex flex-row text-[#F6F7FB]">
-              <CiFolderOn className="w-6 h-6 text-[#F6F7FB]" />
-              <div className="mx-1 my-[-1]">Test Folder</div>
-            </button>
-          </div>
+          <Folder />
 
           <div className="my-4 hover:bg-[#2E3856]">
-            <button className="flex flex-row text-[#F6F7FB]">
+            <button
+              className="flex flex-row text-[#F6F7FB]"
+              onClick={() => setIsNewFolderModalOpen(true)}
+            >
               <FaPlus className="w-4 h-4 text-[#F6F7FB] m-1" />
               <div className="mx-1 my-[-1]">Add Folder</div>
             </button>
           </div>
         </div>
       </nav>
+
+      <NewFolderModal
+        isOpen={isNewFolderModalOpen}
+        onClose={() => setIsNewFolderModalOpen(false)}
+      />
     </>
   );
 }
