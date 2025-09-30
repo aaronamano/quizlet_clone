@@ -5,9 +5,9 @@ hello I will attempt to make a fullstack quizlet clone
 
 
 ## Frontend
-1. run `npm install`
-2. in `@/frontend/` run `npm run dev`
+1. run `pnpm install`
+2. in `@/frontend/` run `pnpm run dev`
 
 ## Backend
-1. run `npm install`
-2. in `@/backend/` run `node index.mjs`
+1. run `pnpm install`
+2. in `@/backend/` run `pnpm run dev`
