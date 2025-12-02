@@ -9,6 +9,7 @@ import { IoMdPeople } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
 import FlashcardSetModal from "./modal/FlashcardSetModal";
 import NewFolderModal from "./modal/NewFolderModal";
+import { useFolders } from "../contexts/FolderContext";
 
 
 
@@ -16,6 +17,11 @@ export default function HorizontalNavbar() {
   const [isCreateDropdownOpen, setIsCreateDropdownOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<'flashcard' | 'folder' | null>(null);
   const createDropdownRef = useRef<HTMLDivElement>(null);
+  const { addFolder } = useFolders();
+
+  const handleCreateFolder = (folderName: string) => {
+    addFolder(folderName);
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -152,6 +158,7 @@ export default function HorizontalNavbar() {
       <NewFolderModal
         isOpen={activeModal === 'folder'}
         onClose={handleModalClose}
+        onCreateFolder={handleCreateFolder}
       />
     </>
   );

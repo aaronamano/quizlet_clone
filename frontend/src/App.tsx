@@ -4,10 +4,11 @@ import LibFolders from "./components/LibFolders";
 import CreateFlashcardsSetPage from "./components/CreateFlashcardsSetPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StudySetPage from "./components/StudySetPage";
+import { FolderProvider } from "./contexts/FolderContext";
 
 function App() {
   return (
-    <>
+    <FolderProvider>
       <div className="bg-[#0A092D] min-h">
         <Router>
           <Routes>
@@ -18,7 +19,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </>
+    </FolderProvider>
   );
 }
 

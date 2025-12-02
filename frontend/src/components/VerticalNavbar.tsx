@@ -6,22 +6,32 @@ import { FaRegBell } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import NewFolderModal from "./modal/NewFolderModal";
+import { useFolders } from "../contexts/FolderContext";
 
-function Folder() {
+function FolderList() {
+  const { folders } = useFolders();
+  
   return (
     <>
-      <div className="my-4 hover:bg-[#2E3856]">
-        <button className="flex flex-row text-[#F6F7FB]">
-          <CiFolderOn className="w-6 h-6 text-[#F6F7FB]" />
-          <div className="mx-1 my-[-1]">Test Folder</div>
-        </button>
-      </div>
+      {folders.map((folder) => (
+        <div key={folder.id} className="my-4 hover:bg-[#2E3856]">
+          <button className="flex flex-row text-[#F6F7FB]">
+            <CiFolderOn className="w-6 h-6 text-[#F6F7FB]" />
+            <div className="mx-1 my-[-1]">{folder.name}</div>
+          </button>
+        </div>
+      ))}
     </>
   )
 }
 
 export default function VerticalNavbar() {
   const [isNewFolderModalOpen, setIsNewFolderModalOpen] = useState(false);
+  const { addFolder } = useFolders();
+
+  const handleCreateFolder = (folderName: string) => {
+    addFolder(folderName);
+  };
 
   return (
     <>
@@ -54,7 +64,7 @@ export default function VerticalNavbar() {
 
           <p className="text-[#F6F7FB] my-2">Your Folders</p>
 
-          <Folder />
+          <FolderList />
 
           <div className="my-4 hover:bg-[#2E3856]">
             <button
@@ -71,6 +81,7 @@ export default function VerticalNavbar() {
       <NewFolderModal
         isOpen={isNewFolderModalOpen}
         onClose={() => setIsNewFolderModalOpen(false)}
+        onCreateFolder={handleCreateFolder}
       />
     </>
   );
