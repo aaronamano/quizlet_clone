@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  username  String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  studySets StudySet[]
+
+  @@map("User")
+}
+
+model StudySet {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  isPublic    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  userId      String
+  flashcards  Flashcard[]
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("StudySet")
+}
+
+model Flashcard {
+  id         String   @id @default(cuid())
+  term       String
+  definition String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  studySetId String
+  studySet   StudySet @relation(fields: [studySetId], references: [id], onDelete: Cascade)
+
+  @@map("Flashcard")
+}
