@@ -1,8 +1,8 @@
-import 'dotenv/config'
-import express from 'express';
-import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from "@prisma/adapter-pg";
+require('dotenv/config')
+const express = require('express');
+const cors = require('cors');
+const { PrismaClient } = require('@prisma/client');
+const { PrismaPg } = require("@prisma/adapter-pg");
 
 const connectionString = process.env.DATABASE_URL;
 const adapter = new PrismaPg({ connectionString });
