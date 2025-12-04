@@ -5,8 +5,18 @@ const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require("@prisma/adapter-pg");
 
 const connectionString = process.env.DATABASE_URL;
+console.log('Database URL configured:', connectionString ? 'Yes' : 'No');
+
 const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
+
+// Test database connection
+prisma.$connect()
+  .then(() => console.log('Database connected successfully'))
+  .catch((error) => {
+    console.error('Database connection failed:', error);
+    console.error('Connection string:', connectionString);
+  });
 
 const port = 3000;
 const app = express();
@@ -40,6 +50,44 @@ app.get('/', (req, res) => {
     });
 });
 
+// Debug route to check database connection and data
+app.get('/debug', async (req, res) => {
+  try {
+    console.log('Debug: Testing database connection...');
+    
+    // Test basic connection
+    await prisma.$queryRaw`SELECT 1`;
+    console.log('Debug: Database connection OK');
+    
+    // Check if StudySet table exists and count records
+    const totalCount = await prisma.studySet.count();
+    console.log('Debug: Total study sets:', totalCount);
+    
+    const publicCount = await prisma.studySet.count({
+      where: { isPublic: true }
+    });
+    console.log('Debug: Public study sets:', publicCount);
+    
+    // Try to get one record without includes
+    const firstSet = await prisma.studySet.findFirst();
+    console.log('Debug: First study set:', firstSet);
+    
+    res.json({
+      databaseConnected: true,
+      totalStudySets: totalCount,
+      publicStudySets: publicCount,
+      firstStudySet: firstSet
+    });
+  } catch (error) {
+    console.error('Debug error:', error);
+    res.status(500).json({ 
+      error: 'Debug failed', 
+      details: error.message,
+      stack: error.stack 
+    });
+  }
+});
+
 // Get all public study sets
 app.get('/api/study-sets', async (req, res) => {
   try {
@@ -53,7 +101,8 @@ app.get('/api/study-sets', async (req, res) => {
     });
     res.json(studySets);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch study sets' });
+    console.error('Error fetching study sets:', error);
+    res.status(500).json({ error: 'Failed to fetch study sets', details: error.message });
   }
 });
 
